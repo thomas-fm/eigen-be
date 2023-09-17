@@ -1,0 +1,40 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Member {
+  // USER ID AUTOINCREMENT M-XXX
+  id Int @id @default(autoincrement())
+  code String @unique
+  name String
+  borrowHistory BorrowHistory[]
+}
+
+model Book {
+  // BOOK ID NOT AUTOINCREMENT
+  // USE USER GENERATED ID
+  id Int @id @default(autoincrement())
+  code String @unique
+  title String
+  author String
+  stock Int
+  borrowHistory BorrowHistory[]
+}
+
+model BorrowHistory {
+  id Int @id @default(autoincrement())
+  bookCode String
+  memberCode String
+  borrowDate DateTime @default(now())
+  returnDate DateTime?
+  book Book @relation(fields: [bookCode], references: [code], onDelete: Cascade, onUpdate: NoAction)
+  member Member @relation(fields: [memberCode], references: [code], onDelete: Cascade, onUpdate: NoAction) 
+}
