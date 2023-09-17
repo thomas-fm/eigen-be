@@ -6,6 +6,7 @@ const matrix = (m) => {
   let secondDiagonal = 0;
   const firstIdx = [0, 0];
   const secondIdx = [0, n - 1];
+
   for (let i = 0; i < n; i++) {
     firstDiagonal += m[i + firstIdx[0]][i + firstIdx[1]];
     secondDiagonal += m[secondIdx[0] + i][secondIdx[1] - i];

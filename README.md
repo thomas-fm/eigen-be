@@ -102,11 +102,18 @@
 - Requirements: npm, NestJS, Postgres
 - Modify .env
 - Create database according to .env
-- Run `npm install`
-- Run `npx prisma db seed`
-- Run `npm run start:dev`
+- Run command to start development program
+
+```
+npm install
+npx prisma migrate dev --name init
+npx prisma generate
+npx prisma db seed
+npm run start:dev
+```
+
 - Open [localhost:3000/api](http://localhost:3000/api#/) for documentation
-- Run `npm run test` for unit testing
+- Run `npm run test` for unit test
 
 ## Notes
 
